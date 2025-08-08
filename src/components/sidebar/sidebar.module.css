@@ -1,0 +1,66 @@
+.sidebar {
+   min-width: 200px;
+   display: flex;
+   margin-top: 40px;
+   padding: 20px 0px;
+   background: blanchedalmond;
+   border-radius: 10px;
+   max-width: 300px;
+}
+.sidebar__container {
+   display: flex;
+   flex-direction: column;
+   gap: 100px;
+   padding: 0px 15px;
+   flex: 1 1 300px;
+   justify-content: space-between;
+}
+.sidebar__list {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+.sidebar__list li {
+   font-size: 20px;
+}
+.sidebar__list li a {
+   position: relative;
+   color: #000;
+   transition: all 0.3s ease 0s;
+}
+.sidebar__list li a::after {
+   content: "";
+   position: absolute;
+   width: 0%;
+   height: 2px;
+   background: #000;
+   left: 0;
+   bottom: 0;
+   transition: all 0.3s ease 0s;
+}
+.sidebar__list li a.active {
+   color: gold;
+}
+.sidebar__list li a.active:hover::after {
+   background: gold;
+   transition: all 0.3s ease 0s;
+}
+.sidebar__list li a:hover::after {
+   width: 100%;
+   transition: all 0.3s ease 0s;
+}
+.sidebar__settings {
+   font-size: 20px;
+   line-height: 1.5em;
+   color: #000;
+}
+.friends {
+   display: flex;
+   gap: 15px;
+
+   flex-wrap: wrap;
+}
+.friends__container p {
+   font-size: 20px;
+   margin-bottom: 20px;
+}

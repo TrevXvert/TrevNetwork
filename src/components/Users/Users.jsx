@@ -1,0 +1,86 @@
+import styles from "./Users.module.css"
+import userPhoto from "./../../assets/images/user-photo.webp"
+import { NavLink } from "react-router"
+import { useDispatch } from "react-redux"
+
+const Users = (props) => {
+   const dispatch = useDispatch()
+   let users = props.users.map(user => {
+      return (
+         <div className={styles.user}>
+
+            <div className={styles.avatar__container}>
+
+               <NavLink to={`/profile?id=${user.id}`} className={styles.avatar}>
+                  <img src={user.avatar ? user.avatar : userPhoto} alt="" />
+               </NavLink>
+
+               {user.followed
+                  ? <button disabled={props.followingProgress.some((id) => id === user.id)}
+                     onClick={() => { dispatch(props.unfollowThunkCreator(user.id)) }}
+                     className={styles.follow__button}>Unfollow</button>
+
+                  : <button disabled={props.followingProgress.some((id) => id === user.id)}
+                     onClick={() => { dispatch(props.followThunkCreator(user.id)) }}
+                     className={styles.follow__button}>Follow</button>
+               }
+
+
+            </div>
+
+
+            <div className={styles.info}>
+
+               <div className={styles.about}>
+                  <div className={styles.name}>{user.name}</div>
+                  <div className={styles.status}>{user.status}</div>
+               </div>
+
+
+               <div className={styles.location}>
+                  <div className={styles.city}>{user.city}</div>
+                  <div className={styles.country}>{user.country}</div>
+               </div>
+
+            </div>
+
+         </div >
+      )
+   })
+
+   let pagesCount = Math.ceil(props.totalCount / props.pageSize)
+   let pages = []
+   for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i)
+   }
+
+   let visiblePages = pages.slice(0, 10)
+
+
+   return (
+
+      <div>
+         <p className={styles.title}>Users</p>
+
+         <div className={styles.users}>
+            {users}
+
+            {/* PAGINATION */}
+            <div className={styles.pagination}>
+               {visiblePages.map(page => (
+                  <span key={page} onClick={(e) => props.onPageChanged(page)}
+                     className={props.currentPage === page ? styles.active : ""}>
+                     {page}
+                  </span>
+               ))}
+            </div>
+            {/* PAGINATION */}
+
+         </div >
+
+      </div>
+   )
+}
+
+export default Users;
+

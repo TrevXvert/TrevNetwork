@@ -1,0 +1,177 @@
+{
+   "items": [
+      {
+         "id": 1,
+         "name": "Shura",
+         "avatar": "",
+         "status": "I'm a boss",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Kostanay"
+      },
+      {
+         "id": 2,
+         "name": "Ivan",
+         "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT2XmNNIfwphDl1WBGipOc2sKCKa2pCbUMSw&s",
+         "status": "Memento mori",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Kostanay"
+      },
+      {
+         "id": 3,
+         "name": "Dmitry",
+         "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT2XmNNIfwphDl1WBGipOc2sKCKa2pCbUMSw&s",
+         "status": "I'm a Nigga",
+         "followed": true,
+         "country": "Kazakhstan",
+         "city": "Kostanay"
+      },
+      {
+         "id": 4,
+         "name": "Askhab",
+         "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT2XmNNIfwphDl1WBGipOc2sKCKa2pCbUMSw&s",
+         "status": "Уосьмой май",
+         "followed": true,
+         "country": "Kazakhstan",
+         "city": "Kostanay"
+      },
+      {
+         "id": 5,
+         "name": "Ayan",
+         "avatar": "https://randomuser.me/api/portraits/men/5.jpg",
+         "status": "Просто живу",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Almaty"
+      },
+      {
+         "id": 6,
+         "name": "Zarina",
+         "avatar": "https://randomuser.me/api/portraits/women/6.jpg",
+         "status": "Люблю кофе",
+         "followed": true,
+         "country": "Kazakhstan",
+         "city": "Astana"
+      },
+      {
+         "id": 7,
+         "name": "Murat",
+         "avatar": "https://randomuser.me/api/portraits/men/7.jpg",
+         "status": "В разработке",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Karaganda"
+      },
+      {
+         "id": 8,
+         "name": "Aigerim",
+         "avatar": "https://randomuser.me/api/portraits/women/8.jpg",
+         "status": "🌸",
+         "followed": true,
+         "country": "Kazakhstan",
+         "city": "Shymkent"
+      },
+      {
+         "id": 9,
+         "name": "Dias",
+         "avatar": "https://randomuser.me/api/portraits/men/9.jpg",
+         "status": "Кодим React",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Kostanay"
+      },
+      {
+         "id": 10,
+         "name": "Aliya",
+         "avatar": "https://randomuser.me/api/portraits/women/10.jpg",
+         "status": "Сохраняю спокойствие",
+         "followed": true,
+         "country": "Kazakhstan",
+         "city": "Pavlodar"
+      },
+      {
+         "id": 11,
+         "name": "Rustam",
+         "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
+         "status": "🎧 Музыка решает",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Ust-Kamenogorsk"
+      },
+      {
+         "id": 12,
+         "name": "Dana",
+         "avatar": "https://randomuser.me/api/portraits/women/12.jpg",
+         "status": "В потоке",
+         "followed": true,
+         "country": "Kazakhstan",
+         "city": "Aktobe"
+      },
+      {
+         "id": 13,
+         "name": "Nursultan",
+         "avatar": "https://randomuser.me/api/portraits/men/13.jpg",
+         "status": "Чилю",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Taraz"
+      },
+      {
+         "id": 14,
+         "name": "Kamila",
+         "avatar": "https://randomuser.me/api/portraits/women/14.jpg",
+         "status": "На волне",
+         "followed": true,
+         "country": "Kazakhstan",
+         "city": "Petropavlovsk"
+      },
+      {
+         "id": 15,
+         "name": "Yerlan",
+         "avatar": "https://randomuser.me/api/portraits/men/15.jpg",
+         "status": "Слежу за трендами",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Kyzylorda"
+      },
+      {
+         "id": 16,
+         "name": "Madina",
+         "avatar": "https://randomuser.me/api/portraits/women/16.jpg",
+         "status": "Пишу диплом",
+         "followed": true,
+         "country": "Kazakhstan",
+         "city": "Taldykorgan"
+      },
+      {
+         "id": 17,
+         "name": "Timur",
+         "avatar": "https://randomuser.me/api/portraits/men/17.jpg",
+         "status": "🔥",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Semey"
+      },
+      {
+         "id": 18,
+         "name": "Gulnaz",
+         "avatar": "https://randomuser.me/api/portraits/women/18.jpg",
+         "status": "В поиске себя",
+         "followed": true,
+         "country": "Kazakhstan",
+         "city": "Oral"
+      },
+      {
+         "id": 19,
+         "name": "Adil",
+         "avatar": "https://randomuser.me/api/portraits/men/19.jpg",
+         "status": "💼 Работаю",
+         "followed": false,
+         "country": "Kazakhstan",
+         "city": "Kostanay"
+      }
+   ],
+   "totalCount": 4,
+   "error": 0
+}
