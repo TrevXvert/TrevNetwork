@@ -1,26 +1,28 @@
-import React from "react";
 import p from "./myPosts.module.css";
+import { useForm } from "react-hook-form"
 
 const MyPosts = (props) => {
 
-   let NewPostElement = React.createRef()
+   const {
+      register,
+      formState: { errors, isValid },
+      handleSubmit,
+      reset,
+   } = useForm({ mode: "onChange" })
 
-   let onAddPost = () => {
-      props.addPost()
-   }
-
-   let onPostChange = () => {
-      let text = NewPostElement.current.value
-      props.updateNewPostText(text)
-      console.log(props.NewPostText);
-   }
+   const handlePost = (data) => {
+      console.log(data);
+      props.addPost(data)
+      reset();
+   };
 
    return (
-      <div className={p.myposts}>
+      <form onSubmit={handleSubmit(handlePost)} className={p.myposts}>
          <p>My Posts</p>
-         <textarea value={props.NewPostText} onChange={onPostChange} ref={NewPostElement}></textarea>
-         <button onClick={onAddPost} className={p.button}>Send</button>
-      </div>
+         <div>{errors.Post ? <p>{errors.Post.message}</p> : ""}</div>
+         <textarea {...register("Post", { required: "Field is required", minLength: { value: 20, message: "At least 20 symbols" } })}></textarea>
+         <button disabled={!isValid} className={p.button}>Send</button>
+      </form>
    )
 }
 

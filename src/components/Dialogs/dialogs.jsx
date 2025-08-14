@@ -1,7 +1,6 @@
-import React from "react";
 import { NavLink } from "react-router";
 import d from "./dialogs.module.css"
-
+import { useForm } from "react-hook-form"
 
 export const Dialog = (props) => {
 
@@ -28,17 +27,18 @@ export const Message = (props) => {
 }
 
 const Dialogs = (props) => {
-   let newMessageText = React.createRef();
 
-   let onSendMessage = () => {
-      props.sendMessage()
+   const {
+      register,
+      formState: { errors, isValid },
+      handleSubmit,
+      reset,
+   } = useForm({ mode: "onChange" })
+
+   const handleMessage = (data) => {
+      props.sendMessage(data)
+      reset();
    }
-
-   let onChangeMessage = () => {
-      let text = newMessageText.current.value
-      props.changeMessage(text)
-   }
-
 
    return (
       <div className={d.dialogs}>
@@ -49,15 +49,15 @@ const Dialogs = (props) => {
                {props.DialogsElements}
             </ul>
 
-            <div className={d.messages}>
+            <form onSubmit={handleSubmit(handleMessage)} className={d.messages}>
                {props.MessagesElements}
 
                <div className={d.my__message}>
-                  <textarea onChange={onChangeMessage} value={props.newMessageBody} ref={newMessageText}></textarea>
+                  <textarea {...register("message", { required: "Message is required" })}></textarea>
                </div>
 
-               <button onClick={onSendMessage}>Send</button>
-            </div>
+               <button disabled={!isValid}>Send</button>
+            </form>
 
 
 

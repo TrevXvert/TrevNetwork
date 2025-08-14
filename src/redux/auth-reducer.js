@@ -29,6 +29,7 @@ const authReducer = (state = initialState, action) => {
 }
 
 
+
 export let setUserDataCreator = (userId, username, email) => ({ type: SET_USER_DATA, data: { userId, username, email } })
 
 export let getAuth = () => {
