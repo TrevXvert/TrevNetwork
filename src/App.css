@@ -128,3 +128,9 @@ body {
   flex-direction: column;
   gap: 40px;
 }
+.form__error {
+  color: red;
+}
+.form__error:has(input) {
+  border: 1px solid red;
+}

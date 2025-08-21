@@ -1,20 +1,20 @@
 import p from "./profile.module.css";
 import userPhoto from "../../../assets/images/user-photo.webp"
-import { useState } from "react";
-import { updateStatus } from "../../../redux/profile-reducer";
+import { useEffect, useState } from "react";
 const Profile = (props) => {
-
    const [status, setStatus] = useState(props.status)
-
-   let onUpdateStatus = () => {
-      updateStatus(status)
-   }
 
    let onStatusChange = (e) => {
       setStatus(e.target.value)
    }
 
+   let onUpdateStatus = () => {
+      props.updateStatus(status)
+   }
 
+   useEffect(() => {
+      setStatus(props.status)
+   }, [props.status])
 
    return (
       <div className={p.content}>
@@ -25,7 +25,6 @@ const Profile = (props) => {
             </div>
 
             <div className={p.status}>
-               <p>{status}</p>
                <input value={status} onChange={onStatusChange} type="text" className={p.status__input} />
                <button onClick={(e) => onUpdateStatus()} type="button">Change status</button>
             </div>

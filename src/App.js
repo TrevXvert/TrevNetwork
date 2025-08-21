@@ -5,11 +5,16 @@ import { Routes, Route } from 'react-router';
 import DialogsContainer from './components/Dialogs/dialogsContainer';
 import UsersContainer from './components/Users/UsersContainer'
 import HeaderContainer from './components/header/headerContainer';
-import Login from "./components/Login/Login"
+import LoginContainer from './components/Login/LoginContainer';
+import { useDispatch, useSelector } from 'react-redux';
+import { setInitThunk } from "./redux/app-reducer"
 
 
 
 function App() {
+
+  const dispatch = useDispatch()
+  dispatch(setInitThunk())
 
   return (
 
@@ -33,7 +38,7 @@ function App() {
 
             <Route path="/users" element={<UsersContainer />} />
 
-            <Route path="/login/*" element={<Login />} />
+            <Route path="/login/*" element={<LoginContainer />} />
 
           </Routes>
 

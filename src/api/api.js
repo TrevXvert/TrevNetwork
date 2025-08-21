@@ -7,10 +7,8 @@ const instance = axios.create({
    baseURL: "https://social-network.samuraijs.com/api/1.0/"
 })
 
-export const getAuthState = () => {
+export const getAuthState = () => instance.get("auth/me")
 
-   return (instance.get("auth/me"))
-}
 
 export const getUsers = (currentPage, pageSize) => {
    return (
@@ -37,18 +35,32 @@ export const getUnfollowState = (userId) => {
 
 export const getUserProfile = (userId) => {
    return (
-      instance.get(`profile/${userId || "2"}`)
+      instance.get(`profile/${userId}`)
    )
 }
 export const getUserStatus = (userId) => {
    return (
-      instance.get(`profile/status/${userId || "2"}`)
+      instance.get(`profile/status/${userId}`)
    )
 }
 export const updateUserStatus = (status) => {
    return (
-      instance.put(`profile/status/${{ status: status }}`)
+      instance.put(`profile/status/`, { status })
    )
 }
+
+export const logInUser = (email, password, rememberMe) => {
+   return (
+      instance.post(`/auth/login`, { email, password, rememberMe })
+   )
+}
+
+export const logOutUser = () => {
+   return (
+      instance.delete(`/auth/login`)
+   )
+}
+
+
 
 

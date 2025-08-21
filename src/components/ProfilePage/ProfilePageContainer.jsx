@@ -3,31 +3,39 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from "react"
 import Posts from './posts/posts';
-import { getUser, setUserStatus, updateStatus } from "../../redux/profile-reducer"
+import { getUserThunk, setUserStatusThunk, updateStatusThunk } from "../../redux/profile-reducer"
 import useAuthRedirect from "../../hooks/useAuthRedirect"
 
 
 const ProfileContainer = () => {
 
-   // useAuthRedirect()
+   useAuthRedirect()
+
+   const dispatch = useDispatch()
    const state = useSelector(state => state.ProfilePage.PostsData)
    const profile = useSelector(state => state.ProfilePage.Profile)
    const status = useSelector(state => state.ProfilePage.status)
-   const dispatch = useDispatch()
+
    const [searchParams] = useSearchParams();
-   const userId = searchParams.get('id');
 
-   if (userId) {
-      dispatch(setUserStatus(userId))
+   const searchUserId = searchParams.get('id');
+   const authUserId = useSelector(state => state.Auth.userId)
+
+   const userId = searchUserId || authUserId
+
+   let updateStatus = (status) => {
+      dispatch(updateStatusThunk(status))
    }
-
 
    let PostsElements = state.map((post) =>
       <Posts key={post.id} message={post.text} avatar={post.avatar} likesCount={post.likesCount} />)
 
    useEffect(() => {
-      dispatch(getUser(userId))
-   }, [])
+      if (userId) {
+         dispatch(getUserThunk(userId))
+         dispatch(setUserStatusThunk(userId))
+      }
+   }, [userId, dispatch])
 
    return <ProfilePage updateStatus={updateStatus} status={status} profile={profile} PostsElements={PostsElements} />
 

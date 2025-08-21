@@ -4,13 +4,14 @@ import { useEffect } from "react";
 
 const useAuthRedirect = () => {
    const isAuth = useSelector(state => state.Auth.isAuth);
+   const init = useSelector(state => state.App.init);
    const navigate = useNavigate();
 
    useEffect(() => {
-      if (!isAuth) {
+      if (init && !isAuth) {
          navigate("/login");
       }
-   }, [isAuth, navigate])
+   }, [init, isAuth, navigate])
 }
 
 export default useAuthRedirect

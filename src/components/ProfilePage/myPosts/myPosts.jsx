@@ -1,17 +1,19 @@
+import React from "react";
 import p from "./myPosts.module.css";
 import { useForm } from "react-hook-form"
 
-const MyPosts = (props) => {
+const MyPostsForm = React.memo((props) => {
+
+   console.log("render");
 
    const {
       register,
       formState: { errors, isValid },
       handleSubmit,
       reset,
-   } = useForm({ mode: "onChange" })
+   } = useForm({ mode: "onBlur" })
 
    const handlePost = (data) => {
-      console.log(data);
       props.addPost(data)
       reset();
    };
@@ -24,6 +26,6 @@ const MyPosts = (props) => {
          <button disabled={!isValid} className={p.button}>Send</button>
       </form>
    )
-}
+})
 
-export default MyPosts
+export default MyPostsForm

@@ -1,56 +1,68 @@
 import { useForm } from "react-hook-form";
 import styles from "./Login.module.css"
 
-const Login = () => {
+
+const Login = (props) => {
    return (
       <div>
          <p className={styles.login__title}>Login</p>
-         <LoginForm />
+         <LoginForm {...props} />
       </div>
    )
 }
 
 
-export const LoginForm = () => {
-
+export const LoginForm = (props) => {
    const {
       register,
       formState: { errors, isValid },
       handleSubmit,
+      setError,
       reset,
    } = useForm({
       mode: "onChange"
    });
 
-   const handleLogin = (data) => {
-      console.log(data);
+   const handleLogin = async (data) => {
+      const response = await props.onLogin(data)
+
+      if (response?.data?.resultCode === 1) {
+         setError("root", { type: "server", message: "Email or password are incorrect" })
+         return
+      }
+
+      if (response?.data?.resultCode === 10) {
+         setError("root", { type: "server", message: "Too many attempts. Try again later" })
+         return
+      }
+
       reset();
    };
 
    return (
       <form onSubmit={handleSubmit(handleLogin)} className={styles.login__form}>
-         <div>
-            {errors.Username ? <p>{errors.Username.message}</p> : ""}
+         <div className="form__error">
+            {errors.Email ? <p>{errors.Email.message}</p> : ""}
          </div>
 
-         <div className={styles.login__input}>
+         <div className={`${styles.login__input} ${errors.Email ? "form__error" : ""}`}>
             <input
-               {...register("Username",
+               {...register("Email",
                   {
-                     required: "Username is required",
+                     required: "Email is required",
                      maxLength: {
                         value: 30,
                         message: "30 symbols maximum",
                      },
                   })}
-               placeholder='Username' />
+               placeholder='Email' />
          </div>
 
-         <div>
+         <div className="form__error">
             {errors.Password && <p>{errors.Password.message}</p>}
          </div>
 
-         <div className={styles.login__input}>
+         <div className={`${styles.login__input} ${errors.Password ? "form__error" : ""}`}>
             <input {...register("Password",
                {
                   required: "Password is required",
@@ -62,6 +74,9 @@ export const LoginForm = () => {
             )} type="password" placeholder="Password" />
 
          </div>
+
+         <div className="form__error">{errors.root && <p>{errors.root.message}</p>}</div>
+
 
          <div className={styles.login__checkbox}>
             <input {...register("RememberMe")} type="checkbox" />

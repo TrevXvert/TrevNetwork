@@ -3,14 +3,15 @@ import Users from "./Users"
 import { changePageCreator, getUsersThunkCreator, followThunkCreator, unfollowThunkCreator } from "./../../redux/users-reducer"
 import Preloader from "../common/preloader/preloader"
 import { useEffect } from "react"
+import { selectUsers, selectTotalCount, selectPageSize, selectCurrentPage, selectIsFetching, selectFollowingProgress } from "../../features/selectors/users-selectors"
 
 const UsersContainer = () => {
-   const users = useSelector(state => state.UsersPage.users)
-   const totalCount = useSelector(state => state.UsersPage.totalCount)
-   const pageSize = useSelector(state => state.UsersPage.pageSize)
-   const currentPage = useSelector(state => state.UsersPage.currentPage)
-   const isFetching = useSelector(state => state.UsersPage.isFetching)
-   const followingProgress = useSelector(state => state.UsersPage.followingProgress)
+   const users = useSelector(selectUsers)
+   const totalCount = useSelector(selectTotalCount)
+   const pageSize = useSelector(selectPageSize)
+   const currentPage = useSelector(selectCurrentPage)
+   const isFetching = useSelector(selectIsFetching)
+   const followingProgress = useSelector(selectFollowingProgress)
    const dispatch = useDispatch()
 
    const changePage = (pageNumber) => {
@@ -25,8 +26,6 @@ const UsersContainer = () => {
       dispatch(getUsersThunkCreator(page, pageSize));
       changePage(page)
    }
-
-
 
    return (
       <>

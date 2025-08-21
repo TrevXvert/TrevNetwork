@@ -7,7 +7,7 @@ const Users = (props) => {
    const dispatch = useDispatch()
    let users = props.users.map(user => {
       return (
-         <div className={styles.user}>
+         <div key={user.id} className={styles.user}>
 
             <div className={styles.avatar__container}>
 
@@ -55,7 +55,6 @@ const Users = (props) => {
    }
 
    let visiblePages = pages.slice(0, 10)
-
 
    return (
 

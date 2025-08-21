@@ -1,16 +1,19 @@
+import { useCallback } from "react";
 import { addPostActionCreator } from "../../../redux/profile-reducer"
-import MyPosts from "./myPosts"
-import { useSelector, useDispatch } from "react-redux";
+import MyPostsForm from "./myPosts"
+import { useDispatch } from "react-redux";
 
 const MyPostsContainer = () => {
-   const ProfilePage = useSelector(state => state.ProfilePage)
+
+   console.log("container");
+
    const dispatch = useDispatch()
 
-   const addPost = (data) => {
+   const addPost = useCallback((data) => {
       dispatch(addPostActionCreator(data))
-   }
+   }, [dispatch])
 
-   return <MyPosts ProfilePage={ProfilePage} addPost={addPost} />
+   return <MyPostsForm addPost={addPost} />
 }
 
 export default MyPostsContainer

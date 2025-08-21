@@ -4,16 +4,18 @@ import Preloader from '../common/preloader/preloader';
 
 const ProfilePage = (props) => {
    const profile = props.profile
-   const status = props.status
+
    if (!profile || !profile.fullName) {
       return <Preloader />;
    }
 
+
+
    return (
       <div>
-         <Profile updateStatus={props.updateStatus} status={status} name={profile.fullName} country={profile.country} city={profile.city} phone={profile.phone} background={profile.background} avatar={profile.avatar} aboutMe={profile.aboutMe} />
+         <Profile updateStatus={props.updateStatus} status={props.status} name={profile.fullName} country={profile.country} city={profile.city} phone={profile.phone} background={profile.background} avatar={profile.avatar} aboutMe={profile.aboutMe} />
 
-         <MyPostsContainer />
+         <MyPostsContainer addPost={() => console.log("add")} />
 
          <div className='posts'>
 

@@ -55,6 +55,7 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             status: action.status
          }
+
       default:
          return state
    }
@@ -66,31 +67,25 @@ export let showProfileCreator = (profile) => ({ type: SHOW_PROFILE, profile })
 export let setUserStatusCreator = (status) => ({ type: SET_USER_STATUS, status })
 export let updateUserStatusCreator = (status) => ({ type: UPDATE_USER_STATUS, status })
 
-export let getUser = (userId) => {
-   return (dispatch) => {
-      getUserProfile(userId).then(response => {
-         dispatch(showProfileCreator(response.data))
-      })
-   }
-}
-export let setUserStatus = (userId) => {
-
-   return (dispatch) => {
-      getUserStatus(userId)
-         .then(response => {
-            dispatch(setUserStatusCreator(response.data))
-         })
-   }
+export let getUserThunk = (userId) => async (dispatch) => {
+   const response = await getUserProfile(userId)
+   dispatch(showProfileCreator(response.data))
 }
 
-export let updateStatus = (status) => {
-
-   return (dispatch) => {
-      updateUserStatus(status)
-         .then(response => {
-            dispatch(setUserStatusCreator(response.data))
-         })
+export let setUserStatusThunk = (userId) => async (dispatch) => {
+   const response = await getUserStatus(userId)
+   if (response.data) {
+      dispatch(setUserStatusCreator(response.data))
+   } else {
+      dispatch(setUserStatusCreator(""))
    }
+
 }
+
+
+export let updateStatusThunk = (status) => async () => {
+   await updateUserStatus(status)
+}
+
 
 export default profileReducer

@@ -15,18 +15,38 @@
    -o-object-fit: cover;
    object-fit: cover;
 }
+.header__login_container {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 10px 20px;
+   background: white;
+   border-radius: 8px;
+   min-height: 50px;
+   min-width: 200px;
+}
+.header__login_container::before {
+   content: "";
+   position: absolute;
+   width: 0.3px;
+   height: 100%;
+   background: #000;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+}
 .header__login {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   padding: 10px 20px;
-   background: white;
-   border-radius: 8px;
    font-size: 20px;
-   min-width: 200px;
-   min-height: 50px;
    align-self: center;
    color: #000;
+}
+.header__logout {
+   font-size: 20px;
+   background: transparent;
 }
 .container {
    max-width: 1300px;
