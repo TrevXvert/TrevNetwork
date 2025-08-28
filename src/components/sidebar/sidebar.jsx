@@ -1,7 +1,6 @@
 import { NavLink } from "react-router";
 import s from "./sidebar.module.css";
 import FriendsOnline from "./friendsOnline/friends";
-import { useContext } from "react";
 import { useSelector } from "react-redux";
 
 const Sidebar = () => {
