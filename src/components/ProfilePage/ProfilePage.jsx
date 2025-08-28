@@ -15,7 +15,7 @@ const ProfilePage = (props) => {
       <div>
          <Profile updateStatus={props.updateStatus} status={props.status} name={profile.fullName} country={profile.country} city={profile.city} phone={profile.phone} background={profile.background} avatar={profile.avatar} aboutMe={profile.aboutMe} />
 
-         <MyPostsContainer addPost={() => console.log("add")} />
+         <MyPostsContainer />
 
          <div className='posts'>
 

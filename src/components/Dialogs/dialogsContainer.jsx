@@ -2,25 +2,27 @@ import Dialogs from "./dialogs"
 import { sendMessageActionCreator } from "../../redux/dialogs-reducer"
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { Dialog, Message } from "./dialogs"
+import { Dialog } from "./dialog"
+import { Message } from "./message"
 import useAuthRedirect from "../../hooks/useAuthRedirect"
 
 const DialogsContainer = () => {
 
    useAuthRedirect()
-
-   const state = useSelector(state => state.DialogsPage)
    const dispatch = useDispatch()
+   const dialogs = useSelector(state => state.DialogsPage.dialogsData)
+   const messages = useSelector(state => state.DialogsPage.messagesData)
 
-   let DialogsElements = state.dialogsData.map(dialog => <Dialog key={dialog.id} name={dialog.name} avatar={dialog.avatar} />)
-   let MessagesElements = state.messagesData.map(message => <Message key={message.id} message={message.message} />)
+
+   let DialogsElements = dialogs.map(dialog => <Dialog key={dialog.id} name={dialog.name} avatar={dialog.avatar} />)
+   let MessagesElements = messages.map(message => <Message key={message.id} message={message.message} />)
 
    let sendMessage = (data) => {
       dispatch(sendMessageActionCreator(data))
    }
 
    return (
-      <Dialogs DialogsPage={state} sendMessage={sendMessage} DialogsElements={DialogsElements} MessagesElements={MessagesElements} />
+      <Dialogs sendMessage={sendMessage} DialogsElements={DialogsElements} MessagesElements={MessagesElements} />
    )
 }
 

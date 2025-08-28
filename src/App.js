@@ -1,20 +1,24 @@
 import './App.css';
 import Sidebar from './components/sidebar/sidebar';
-import ProfileContainer from './components/ProfilePage/ProfilePageContainer';
 import { Routes, Route } from 'react-router';
-import DialogsContainer from './components/Dialogs/dialogsContainer';
-import UsersContainer from './components/Users/UsersContainer'
 import HeaderContainer from './components/header/headerContainer';
-import LoginContainer from './components/Login/LoginContainer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setInitThunk } from "./redux/app-reducer"
+import React, { useEffect, Suspense, lazy } from 'react';
+
+const DialogsContainer = lazy(() => import("./components/Dialogs/dialogsContainer"));
+const ProfileContainer = lazy(() => import("./components/ProfilePage/ProfilePageContainer"));
+const UsersContainer = lazy(() => import("./components/Users/UsersContainer"));
+const LoginContainer = lazy(() => import("./components/Login/LoginContainer"));
 
 
 
 function App() {
 
   const dispatch = useDispatch()
-  dispatch(setInitThunk())
+  useEffect(() => {
+    dispatch(setInitThunk()); // обязательно в useEffect, а не напрямую
+  }, [dispatch]);
 
   return (
 
@@ -28,19 +32,15 @@ function App() {
         <div className='content'>
           {/* -------------------------------------------------------------------------------------------------------------- */}
 
-
-          <Routes>
-
-            <Route path="/dialogs/*" element={<DialogsContainer />} />
-
-            <Route path="/profile/:userId" element={<ProfileContainer />} />
-            <Route path="/profile/*" element={<ProfileContainer />} />
-
-            <Route path="/users" element={<UsersContainer />} />
-
-            <Route path="/login/*" element={<LoginContainer />} />
-
-          </Routes>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/dialogs/*" element={<DialogsContainer />} />
+              <Route path="/profile/:userId" element={<ProfileContainer />} />
+              <Route path="/profile/*" element={<ProfileContainer />} />
+              <Route path="/users" element={<UsersContainer />} />
+              <Route path="/login/*" element={<LoginContainer />} />
+            </Routes>
+          </Suspense>
 
 
 
@@ -48,7 +48,7 @@ function App() {
         </div>
 
       </div>
-    </div>
+    </div >
   );
 }
 

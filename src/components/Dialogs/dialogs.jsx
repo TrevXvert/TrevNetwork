@@ -1,32 +1,8 @@
-import { NavLink } from "react-router";
 import d from "./dialogs.module.css"
 import { useForm } from "react-hook-form"
+import React, { useCallback } from "react";
 
-export const Dialog = (props) => {
-
-   let path = "/dialogs/" + props.id
-
-   return (
-      <NavLink to={path}>
-         <li className={d.user}>
-            <div className={d.user__avatar}>
-               <img src={props.avatar} alt="" />
-            </div>
-            <p>{props.name}</p>
-         </li>
-      </NavLink>
-   )
-}
-
-export const Message = (props) => {
-   return (
-      <div className={d.message}>
-         {props.message}
-      </div>
-   )
-}
-
-const Dialogs = (props) => {
+const Dialogs = React.memo((props) => {
 
    const {
       register,
@@ -35,17 +11,16 @@ const Dialogs = (props) => {
       reset,
    } = useForm({ mode: "onChange" })
 
-   const handleMessage = (data) => {
+   const handleMessage = useCallback((data) => {
       props.sendMessage(data)
       reset();
-   }
+   }, [props, reset])
 
    return (
       <div className={d.dialogs}>
          <div className={d.wrapper}>
 
             <ul className={d.users}>
-               {props.DialogsElements}
                {props.DialogsElements}
             </ul>
 
@@ -64,6 +39,6 @@ const Dialogs = (props) => {
          </div>
       </div>
    )
-}
+})
 
 export default Dialogs

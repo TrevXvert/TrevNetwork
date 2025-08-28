@@ -11,7 +11,7 @@ const TOGGLE_FOLLOWING_PROGRESS = "TOGGLE_FOLLOWING_PROGRESS"
 let initialState = {
    users: [],
    totalCount: 0,
-   pageSize: 4,
+   pageSize: 6,
    currentPage: 1,
    isFetching: false,
    followingProgress: [],
@@ -87,42 +87,32 @@ export let changePageCreator = (pageNumber) => ({ type: CHANGE_PAGE, pageNumber 
 export let toggleFetchingCreator = (value) => ({ type: TOGGLE_FETCHING, value })
 export let toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_FOLLOWING_PROGRESS, isFetching, userId })
 
-export let getUsersThunkCreator = (currentPage, pageSize) => {
-   return (dispatch) => {
-      dispatch(toggleFetchingCreator(true))
-      getUsers(currentPage, pageSize)
-         .then(response => {
-            dispatch(countUsersCreator(response.totalCount))
-            dispatch(SetUsersCreator(response.items))
-         })
-         .catch(error => {
-            console.error("Ошибка при получении данных:", error);
-         })
-         .finally(() => {
-            dispatch(toggleFetchingCreator(false));
-         });
-   }
+
+
+export let getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
+   dispatch(toggleFetchingCreator(true))
+   const response = await getUsers(currentPage, pageSize)
+   dispatch(countUsersCreator(response.totalCount))
+   dispatch(SetUsersCreator(response.items))
+   dispatch(toggleFetchingCreator(false));
 }
 
-export let followThunkCreator = (userId) => {
-   return (dispatch) => {
-      dispatch(toggleFollowingProgress(true, userId));
-      dispatch(FollowCreator(userId));
-      getFollowState(userId).then(response => {
-         dispatch(toggleFollowingProgress(false, userId));
-      })
-   }
+const followUnfollowFlow = async (dispatch, userId, actionCreator, apiMethod) => {
+   dispatch(toggleFollowingProgress(true, userId));
+   await dispatch(actionCreator(userId));
+   await apiMethod(userId);
+   dispatch(toggleFollowingProgress(false, userId))
 }
 
-export let unfollowThunkCreator = (userId) => {
-   return (dispatch) => {
-      dispatch(toggleFollowingProgress(true, userId));
-      dispatch(UnfollowCreator(userId));
-      getUnfollowState(userId).then(response => {
-         dispatch(toggleFollowingProgress(false, userId))
-      })
-   }
+export let followThunkCreator = (userId) => (dispatch) => {
+   followUnfollowFlow(dispatch, userId, FollowCreator, getFollowState);
 }
+
+
+export let unfollowThunkCreator = (userId) => (dispatch) => {
+   followUnfollowFlow(dispatch, userId, UnfollowCreator, getUnfollowState);
+}
+
 
 
 export default usersReducer

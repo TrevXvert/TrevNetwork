@@ -4,8 +4,6 @@ import { useForm } from "react-hook-form"
 
 const MyPostsForm = React.memo((props) => {
 
-   console.log("render");
-
    const {
       register,
       formState: { errors, isValid },

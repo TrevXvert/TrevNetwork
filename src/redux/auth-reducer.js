@@ -50,27 +50,22 @@ export let getAuth = () => async (dispatch) => {
 }
 
 
-export let loginUserThunk = (data) => (dispatch) => {
-
+export let loginUserThunk = (data) => async (dispatch) => {
    const { Email, Password, RememberMe } = data
 
-   return logInUser(Email, Password, RememberMe).then(response => {
-      if (response.data.resultCode === 0) {
-         dispatch(getAuth())
-      }
-      return response
-   })
-
+   const response = await logInUser(Email, Password, RememberMe)
+   if (response.data.resultCode === 0) {
+      dispatch(getAuth())
+   }
+   return response
 }
 
-export let logoutUserThunk = () => (dispatch) => {
-   return logOutUser().then(response => {
-      if (response.data.resultCode === 0) {
-         dispatch(logoutUserCreator())
-      }
-      return response
-   })
-
+export let logoutUserThunk = () => async (dispatch) => {
+   const response = await logOutUser()
+   if (response.data.resultCode === 0) {
+      dispatch(logoutUserCreator())
+   }
+   return response
 }
 
 

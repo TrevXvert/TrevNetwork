@@ -2,6 +2,7 @@ import styles from "./Users.module.css"
 import userPhoto from "./../../assets/images/user-photo.webp"
 import { NavLink } from "react-router"
 import { useDispatch } from "react-redux"
+import Pagination from "../common/preloader/Pagination/pagination"
 
 const Users = (props) => {
    const dispatch = useDispatch()
@@ -48,13 +49,6 @@ const Users = (props) => {
       )
    })
 
-   let pagesCount = Math.ceil(props.totalCount / props.pageSize)
-   let pages = []
-   for (let i = 1; i <= pagesCount; i++) {
-      pages.push(i)
-   }
-
-   let visiblePages = pages.slice(0, 10)
 
    return (
 
@@ -65,14 +59,7 @@ const Users = (props) => {
             {users}
 
             {/* PAGINATION */}
-            <div className={styles.pagination}>
-               {visiblePages.map(page => (
-                  <span key={page} onClick={(e) => props.onPageChanged(page)}
-                     className={props.currentPage === page ? styles.active : ""}>
-                     {page}
-                  </span>
-               ))}
-            </div>
+            <Pagination pageSize={props.pageSize} totalCount={props.totalCount} onPageChanged={props.onPageChanged} currentPage={props.currentPage} />
             {/* PAGINATION */}
 
          </div >

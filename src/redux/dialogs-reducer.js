@@ -6,6 +6,10 @@ let initialState = {
       { id: 2, name: "Andrey Chikatilo", avatar: "https://images.steamusercontent.com/ugc/2036236169010009458/2F6C6B2EE802E3B232679EDA7A61175646B34864/?imw=512&amp;imh=512&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true" },
       { id: 3, name: "Adolf Hitler", avatar: "https://avatars.mds.yandex.net/i?id=8272b6b2f61650d784d52540de3eedc4_l-9222271-images-thumbs&n=13" },
       { id: 4, name: "Alexaner Makedonsky", avatar: "https://avatars.mds.yandex.net/get-yapic/25358/Iwt8Wapn2LhRO9uQzcQVKyL7jDM-1/orig" },
+      { id: 5, name: "Shura Shurin", avatar: "https://steamuserimages-a.akamaihd.net/ugc/2375172084993007344/F290FD8EF08EDF7DCF276F6A859B00B6937F2CAD/?imw=512&amp;imh=341&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true" },
+      { id: 6, name: "Andrey Chikatilo", avatar: "https://images.steamusercontent.com/ugc/2036236169010009458/2F6C6B2EE802E3B232679EDA7A61175646B34864/?imw=512&amp;imh=512&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true" },
+      { id: 7, name: "Adolf Hitler", avatar: "https://avatars.mds.yandex.net/i?id=8272b6b2f61650d784d52540de3eedc4_l-9222271-images-thumbs&n=13" },
+      { id: 8, name: "Alexaner Makedonsky", avatar: "https://avatars.mds.yandex.net/get-yapic/25358/Iwt8Wapn2LhRO9uQzcQVKyL7jDM-1/orig" },
    ],
    messagesData: [
       {
@@ -28,7 +32,7 @@ const dialogsReducer = (state = initialState, action) => {
 
       case SEND_MESSAGE:
          let newMessage = {
-            id: 4,
+            id: 9,
             message: action.data.message,
          }
          return {

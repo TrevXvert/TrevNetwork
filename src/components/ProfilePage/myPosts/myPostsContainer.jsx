@@ -5,8 +5,6 @@ import { useDispatch } from "react-redux";
 
 const MyPostsContainer = () => {
 
-   console.log("container");
-
    const dispatch = useDispatch()
 
    const addPost = useCallback((data) => {
