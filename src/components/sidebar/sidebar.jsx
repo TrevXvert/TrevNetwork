@@ -27,8 +27,15 @@ const Sidebar = () => {
                >Messages</NavLink>
                </li>
 
-               <li><a href="/News">News</a></li>
-               <li><a href="/Music">Music</a></li>
+               <li><NavLink to="/news"
+                  className={navData => navData.isActive ? s.active : s.item}
+               >News</NavLink>
+               </li>
+
+               <li><NavLink to="/music"
+                  className={navData => navData.isActive ? s.active : s.item}
+               >Music</NavLink>
+               </li>
 
                <li><NavLink to="/users"
                   className={navData => navData.isActive ? s.active : s.item}
@@ -47,7 +54,7 @@ const Sidebar = () => {
 
 
 
-            <a href="#" className={s.sidebar__settings}>Settings</a>
+            <button className={s.sidebar__settings}>Settings</button>
 
          </nav>
 

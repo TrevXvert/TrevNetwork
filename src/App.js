@@ -10,6 +10,7 @@ const DialogsContainer = lazy(() => import("./components/Dialogs/dialogsContaine
 const ProfileContainer = lazy(() => import("./components/ProfilePage/ProfilePageContainer"));
 const UsersContainer = lazy(() => import("./components/Users/UsersContainer"));
 const LoginContainer = lazy(() => import("./components/Login/LoginContainer"));
+const NewsContainer = lazy(() => import("./components/News/NewsContainer"));
 
 
 
@@ -39,6 +40,7 @@ function App() {
               <Route path="/profile/*" element={<ProfileContainer />} />
               <Route path="/users" element={<UsersContainer />} />
               <Route path="/login/*" element={<LoginContainer />} />
+              <Route path="/news" element={<NewsContainer />} />
             </Routes>
           </Suspense>
 
