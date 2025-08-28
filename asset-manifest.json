@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/TrevNetwork/static/css/main.9f9523cf.css",
-    "main.js": "/TrevNetwork/static/js/main.b87aca66.js",
+    "main.js": "/TrevNetwork/static/js/main.925b4bce.js",
     "static/css/752.6daf5c4a.chunk.css": "/TrevNetwork/static/css/752.6daf5c4a.chunk.css",
     "static/js/752.7ed2e6c5.chunk.js": "/TrevNetwork/static/js/752.7ed2e6c5.chunk.js",
     "static/css/349.027ee101.chunk.css": "/TrevNetwork/static/css/349.027ee101.chunk.css",
@@ -10,12 +10,13 @@
     "static/js/666.9cb15d2e.chunk.js": "/TrevNetwork/static/js/666.9cb15d2e.chunk.js",
     "static/css/530.3891cd38.chunk.css": "/TrevNetwork/static/css/530.3891cd38.chunk.css",
     "static/js/530.7a6a0c11.chunk.js": "/TrevNetwork/static/js/530.7a6a0c11.chunk.js",
+    "static/js/485.4dc4f1e1.chunk.js": "/TrevNetwork/static/js/485.4dc4f1e1.chunk.js",
     "static/js/858.d368b3df.chunk.js": "/TrevNetwork/static/js/858.d368b3df.chunk.js",
     "static/media/like.png": "/TrevNetwork/static/media/like.832e88d61eb8bc21a8df.png",
     "static/media/user-photo.webp": "/TrevNetwork/static/media/user-photo.2f64d768feb03b7adbfe.webp",
     "index.html": "/TrevNetwork/index.html",
     "main.9f9523cf.css.map": "/TrevNetwork/static/css/main.9f9523cf.css.map",
-    "main.b87aca66.js.map": "/TrevNetwork/static/js/main.b87aca66.js.map",
+    "main.925b4bce.js.map": "/TrevNetwork/static/js/main.925b4bce.js.map",
     "752.6daf5c4a.chunk.css.map": "/TrevNetwork/static/css/752.6daf5c4a.chunk.css.map",
     "752.7ed2e6c5.chunk.js.map": "/TrevNetwork/static/js/752.7ed2e6c5.chunk.js.map",
     "349.027ee101.chunk.css.map": "/TrevNetwork/static/css/349.027ee101.chunk.css.map",
@@ -24,10 +25,11 @@
     "666.9cb15d2e.chunk.js.map": "/TrevNetwork/static/js/666.9cb15d2e.chunk.js.map",
     "530.3891cd38.chunk.css.map": "/TrevNetwork/static/css/530.3891cd38.chunk.css.map",
     "530.7a6a0c11.chunk.js.map": "/TrevNetwork/static/js/530.7a6a0c11.chunk.js.map",
+    "485.4dc4f1e1.chunk.js.map": "/TrevNetwork/static/js/485.4dc4f1e1.chunk.js.map",
     "858.d368b3df.chunk.js.map": "/TrevNetwork/static/js/858.d368b3df.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9f9523cf.css",
-    "static/js/main.b87aca66.js"
+    "static/js/main.925b4bce.js"
   ]
 }
