@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from "react"
 import Posts from './posts/posts';
-import { getUserThunk, setUserStatusThunk, updateStatusThunk } from "../../redux/profile-reducer"
+import { getUserThunk, setUserStatusThunk, updateStatusThunk, saveImageThunk, updateProfileThunk } from "../../redux/profile-reducer"
 import useAuthRedirect from "../../hooks/useAuthRedirect"
 
 
@@ -21,11 +21,30 @@ const ProfileContainer = () => {
    const searchUserId = searchParams.get('id');
    const authUserId = useSelector(state => state.Auth.userId)
 
+
+
    const userId = searchUserId || authUserId
+   let isOwner = false
+
+   if (userId === authUserId) {
+      isOwner = true
+   }
 
    let updateStatus = (status) => {
       dispatch(updateStatusThunk(status))
    }
+
+   const saveImage = (e) => {
+      if (e.target.files.length) {
+         const image = e.target.files[0];
+         dispatch(saveImageThunk(image))
+      }
+   }
+
+   const updateProfile = (profile) => {
+      dispatch(updateProfileThunk(profile))
+   }
+
 
    let PostsElements = state.map((post) =>
       <Posts key={post.id} message={post.text} avatar={post.avatar} likesCount={post.likesCount} />)
@@ -37,7 +56,7 @@ const ProfileContainer = () => {
       }
    }, [userId, dispatch])
 
-   return <ProfilePage updateStatus={updateStatus} status={status} profile={profile} PostsElements={PostsElements} />
+   return <ProfilePage userId={userId} updateProfile={updateProfile} saveImage={saveImage} isOwner={isOwner} updateStatus={updateStatus} status={status} profile={profile} PostsElements={PostsElements} />
 
 }
 export default ProfileContainer

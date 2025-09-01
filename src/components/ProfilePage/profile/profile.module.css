@@ -12,8 +12,8 @@
 }
 .account {
    display: flex;
+   flex-direction: column;
    gap: 40px;
-   align-items: center;
    background: floralwhite;
    margin-top: 20px;
    padding: 10px 15px;
@@ -30,16 +30,6 @@
    width: 100%;
    height: 100%;
    object-fit: cover;
-}
-
-.info {
-   font-size: 20px;
-   color: #000;
-   display: flex;
-   flex-direction: column;
-   gap: 15px 60px;
-   flex-wrap: wrap;
-   max-height: 70px;
 }
 
 .status {

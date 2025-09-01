@@ -1,8 +1,11 @@
 import p from "./profile.module.css";
 import userPhoto from "../../../assets/images/user-photo.webp"
 import { useEffect, useState } from "react";
+import ProfileForm from "../ProfileForm/ProfileForm";
 const Profile = (props) => {
+
    const [status, setStatus] = useState(props.status)
+   const [editMode, setEditMode] = useState(false)
 
    let onStatusChange = (e) => {
       setStatus(e.target.value)
@@ -32,15 +35,29 @@ const Profile = (props) => {
             <div className={p.account}>
 
                <div className={p.avatar}>
-                  <img src={props.avatar || userPhoto} alt="" />
+                  <img src={props?.avatar?.large || props?.avatar?.small || userPhoto} alt="" />
+
+                  {props.isOwner &&
+                     <div>
+                        <input onChange={props.saveImage} type="file" accept="image/png, image/jpeg, image/webp" />
+                     </div>}
+
                </div>
 
-               <ul className={p.info}>
-                  <li>Name: {props.name}</li>
-                  <li>Country: {props.country}</li>
-                  <li>City: {props.city}</li>
-                  <li>Phone: {props.phone}</li>
-               </ul>
+               <ProfileForm
+                  userId={props.userId}
+                  updateProfile={props.updateProfile}
+                  editMode={editMode}
+                  setEditMode={setEditMode}
+                  fullName={props.fullName}
+                  aboutMe={props.aboutMe}
+                  lookingForAJob={props.lookingForAJob}
+                  lookingForAJobDescription={props.lookingForAJobDescription}
+                  contacts={props.contacts} />
+
+
+
+
 
             </div>
 

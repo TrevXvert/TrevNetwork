@@ -13,7 +13,7 @@ const Users = (props) => {
             <div className={styles.avatar__container}>
 
                <NavLink to={`/profile?id=${user.id}`} className={styles.avatar}>
-                  <img src={user.avatar ? user.avatar : userPhoto} alt="" />
+                  <img src={user?.photos?.large || user?.photos?.small || userPhoto} alt="" />
                </NavLink>
 
                {user.followed

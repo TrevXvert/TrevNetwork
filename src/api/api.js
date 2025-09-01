@@ -48,6 +48,18 @@ export const updateUserStatus = (status) => {
       instance.put(`profile/status/`, { status })
    )
 }
+export const updateProfile = (profile) => {
+   return (
+      instance.put(`/profile`, profile)
+   )
+}
+export const updateUserPhoto = (image) => {
+   const formData = new FormData()
+   formData.append("image", image)
+   return (
+      instance.put(`/profile/photo/`, formData)
+   )
+}
 
 export const logInUser = (email, password, rememberMe) => {
    return (

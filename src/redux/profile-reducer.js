@@ -1,9 +1,10 @@
-import { getUserProfile, getUserStatus, updateUserStatus } from "../api/api"
+import { getUserProfile, getUserStatus, updateUserStatus, updateUserPhoto, updateProfile } from "../api/api"
 
 const ADD_POST = "ADD-POST";
 const SHOW_PROFILE = "GET-PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
 const UPDATE_USER_STATUS = "UPDATE_USER_STATUS";
+const UPDATE_USER_PHOTO = "UPDATE_USER_PHOTO";
 
 
 
@@ -55,6 +56,11 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             status: action.status
          }
+      case UPDATE_USER_PHOTO:
+         return {
+            ...state,
+            Profile: { ...state.Profile, photos: action.images }
+         }
 
       default:
          return state
@@ -66,6 +72,7 @@ export let addPostActionCreator = (data) => ({ type: ADD_POST, data })
 export let showProfileCreator = (profile) => ({ type: SHOW_PROFILE, profile })
 export let setUserStatusCreator = (status) => ({ type: SET_USER_STATUS, status })
 export let updateUserStatusCreator = (status) => ({ type: UPDATE_USER_STATUS, status })
+export let updateUserPhotoCreator = (images) => ({ type: UPDATE_USER_PHOTO, images })
 
 export let getUserThunk = (userId) => async (dispatch) => {
    const response = await getUserProfile(userId)
@@ -82,10 +89,23 @@ export let setUserStatusThunk = (userId) => async (dispatch) => {
 
 }
 
-
 export let updateStatusThunk = (status) => async () => {
    await updateUserStatus(status)
 }
+
+export let saveImageThunk = (image) => async (dispatch) => {
+   const response = await updateUserPhoto(image)
+   if (response.data.resultCode === 0) {
+      dispatch(updateUserPhotoCreator(response.data.data.photos))
+   }
+}
+
+export let updateProfileThunk = (profile) => async (dispatch) => {
+   await updateProfile(profile)
+   dispatch(getUserThunk(profile.userId))
+}
+
+
 
 
 export default profileReducer
